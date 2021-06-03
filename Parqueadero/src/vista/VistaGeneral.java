@@ -12,74 +12,69 @@ import modelo.Vehiculo;
 
 /**
  *
- * @author diego
+ * @author jaslyn
  */
 public class VistaGeneral {
-
-    private ClienteVista clienteVista;
-    private EmpresaVista empresaVista;
-    private VehiculoVista vehiculoVista;
-    private ServicioVista servicioVista;
+    private VistaCliente clientevista;
+    private VistaEmpresa Empresavista;
+    private VistaVehiculo vehiculovista;
+    private VistaServicio servicioVista;
     private Scanner teclado;
-
-    public VistaGeneral() {
-        empresaVista = new EmpresaVista();
-        clienteVista = new ClienteVista(empresaVista.getEmpresaControlador()); // estoy unificando el controlador de empresa en uno solo
-        vehiculoVista = new VehiculoVista(clienteVista.getClienteControlador());
-        servicioVista = new ServicioVista(vehiculoVista.getVehiculoControlador());
-        teclado = new Scanner(System.in);
+    public VistaGeneral(){
+        Empresavista=new VistaEmpresa();
+        clientevista=new VistaCliente(Empresavista.getEmpresaControlador()); //unifico el controladorEmpresa en uno solo
+        vehiculovista=new VistaVehiculo(clientevista.getClientecontrolador());
+        servicioVista=new VistaServicio(vehiculovista.getVehiculoControlador());
+        teclado=new Scanner(System.in);
     }
-
-    public void menu() {
-        int opcion = 0;
-        do {
-            System.out.println("Seleccione una opción");
-            System.out.println("1. Empresa");
-            System.out.println("2. Cliente");
-            System.out.println("3. Vehiculo");
-            System.out.println("4. Servicio");
-            System.out.println("5. Salir");
-            opcion = teclado.nextInt();
-            switch(opcion){
-                case 1: empresaVista.menu(); break;
-                case 2: this.cliente(); break;
-                case 3: this.vehiculo(); break;
-                case 4: this.servicio();break;
+    public void menu(){
+        int op=0;
+        do{
+            System.out.println("SELECCIONE UNA OPCION");
+            System.out.println("1.Empresa");
+            System.out.println("2.Cliente");
+            System.out.println("3.Vehiculo");
+            System.out.println("4.Servicio");
+            op=teclado.nextInt();
+            switch(op){
+                case 1:Empresavista.menu();break;
+                case 2:this.cliente();break;
+                case 3:this.vehiculo();break;
+                case 4:this.servicio();break;
             }
-        } while (opcion < 5);
+        }while(op<5);//para los demas modelos
     }
-    public void cliente() {
+    public void cliente(){
         System.out.println("Seleccione una empresa para gestionar los clientes");
-        Empresa empresa = empresaVista.buscar();
-        if(empresa != null){ 
-            empresaVista.asignarSelecionado(empresa);
-            clienteVista.menu();
-        }else {
-            System.out.println("No exite la empresa");
+        Empresa empresa=Empresavista.buscar();
+        if(empresa!=null){
+            clientevista.menu();
+        }else{
+            System.out.println("Empresa no existe");
             this.cliente();
         }
     }
     public void vehiculo(){
-        System.out.println("Seleccione una propietario para gestionar los vechiculos");
-        Cliente cliente = clienteVista.buscar();
-        if(cliente != null){ 
-            clienteVista.asignarSeleccionado(cliente);
-            vehiculoVista.menu();
-        }else {
-            System.out.println("No exite la empresa");
+        System.out.println("Seleccione un propietario para gestionar los vehiculos");
+        Cliente cliente=clientevista.buscar();
+        if(cliente!=null){
+            clientevista.asignarSeleccionado(cliente);
+            vehiculovista.menu();
+        }else{
+            System.out.println("Cliente no existe");
             this.vehiculo();
         }
-    }
+    }//cuando se pone el asignado fuera del buscar en 
+    
     public void servicio(){
-        System.out.println("Selecione un vehiculo");
-        Vehiculo vehiculo = vehiculoVista.buscar();
-        if(vehiculo != null){
-            vehiculoVista.asignarSeleccionado(vehiculo);
-            servicioVista.menu();
-        }else {
-            System.out.println("No existe vehiculo");
-            this.menu();
+        System.out.println("Seleccione un vehiculo para gestionar el servicio");
+        Vehiculo vehiculo= vehiculovista.buscar();
+        if(vehiculo!=null){
+            vehiculovista.asignarSeleccionado(vehiculo);
+            vehiculovista.menu();
+        }else{
+            System.out.println("Vehiculo no existente");
+            this.servicio();
         }
     }
-
 }

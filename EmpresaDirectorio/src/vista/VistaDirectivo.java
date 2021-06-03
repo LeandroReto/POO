@@ -5,96 +5,98 @@
  */
 package vista;
 
-
-import controlador.ControladorDirectivo;
+import controlador.ControladorPersona;
 import java.util.Scanner;
 import modelo.Directivo;
 
 /**
  *
- * @author diego
+ * @author jaslyn
  */
 public class VistaDirectivo {
-    public ControladorDirectivo controladorDirectivo;
-    public Scanner teclado;
+    private ControladorPersona controladorDirectivo;
+    private Scanner teclado;
     public VistaDirectivo(){
-        controladorDirectivo = new ControladorDirectivo();
-        teclado = new Scanner(System.in);
+        controladorDirectivo=new ControladorPersona();
+        teclado=new Scanner(System.in);
+        
     }
-    public void menu(){
-        int opcion = 0;
-        do {            
-            System.out.println("1. Crear");
-            System.out.println("2. Actualizar");
-            System.out.println("3. Buscar");
-            System.out.println("4. Eliminar");
-            System.out.println("5. Listar");
-            System.out.println("6. Salir");
-            opcion = teclado.nextInt();
+     public void menu(){
+        int opcion=0;
+        do{
+            System.out.println("1.Crear");
+            System.out.println("2.Actualizar");
+            System.out.println("3.Buscar");
+            System.out.println("4.Eliminar");
+            System.out.println("5.Listar");
+            System.out.println("6.Salir");
+            opcion=teclado.nextInt();
             switch(opcion){
-                case 1: crear(); break;
-                case 2: actualizar(); break;
-                case 3: buscar(); break;
-                case 4: eliminar(); break;
-                case 5: listar(); break;
+                case 1:this.crear();break;
+                case 2:this.actualizar();break;
+                case 3:this.buscar();break;
+                case 4:this.eliminar();break;
+                case 5:this.listar();break;
             }
-        } while (opcion<6);
+        }while(opcion<6);
     }
     public void crear(){
-        System.out.println("Ingrese el nombre");
-        String nombre = teclado.next();
-        System.out.println("Ingrese el apellido");
-        String apellido = teclado.next();
-        System.out.println("Ingrese el cedula");
-        String cedula = teclado.next();
-        System.out.println("Ingrese el direccion");
-        String direccion = teclado.next();
-        System.out.println("Ingrese el sueldo");
-        double sueldo = teclado.nextDouble();
-        System.out.println("Ingrese el categoria");
-        String categoria = teclado.next();
-        System.out.println("Resultado: " + controladorDirectivo.crear(nombre, apellido, cedula, direccion, sueldo, categoria));
+        System.out.println("ingrese el nombre");
+        String nombre=teclado.next();
+        System.out.println("ingrese el apellido");
+        String apellido=teclado.next();
+        System.out.println("ingrese la cedula");
+        String cedula=teclado.next();
+        System.out.println("ingrese la direccion");
+        String direccion=teclado.next();
+        System.out.println("ingrese el Sueldo bruto");
+        double sueldobruto=teclado.nextDouble();
+        System.out.println("ingrese la categoria ");
+        String categoria=teclado.next();
+        System.out.println("Resultado "+controladorDirectivo.crear(cedula, nombre, apellido, direccion, sueldobruto, categoria));
     }
     public Directivo buscar(){
-        System.out.println("Ingrese el cedula");
-        String cedula = teclado.next();
-        Directivo directivo = controladorDirectivo.buscar(cedula);
+        System.out.println("ingrese la cedula");
+        String cedula=teclado.next();
+        Directivo directivo=controladorDirectivo.buscar(cedula);
         controladorDirectivo.setSeleccionado(directivo);
         System.out.println(directivo);
         return directivo;
     }
     public void actualizar(){
-        Directivo directivo = buscar();
-        if(directivo != null){
-            System.out.println("Ingrese el nombre");
-            String nombre = teclado.next();
-            System.out.println("Ingrese el apellido");
-            String apellido = teclado.next();
-            System.out.println("Ingrese el direccion");
-            String direccion = teclado.next();
-            System.out.println("Ingrese el sueldo");
-            double sueldo = teclado.nextDouble();
-            System.out.println("Ingrese el categoria");
-            String categoria = teclado.next();
-            System.out.println("Resultado: " +controladorDirectivo.actualizar(nombre, apellido, directivo.getCedula(), direccion, sueldo, categoria));
+        Directivo directivo=buscar();
+        if (directivo!=null){
+            System.out.println("ingrese el nombre");
+            String nombre=teclado.next();
+            System.out.println("ingrese el apellido");
+            String apellido=teclado.next();
+            System.out.println("ingrese la direccion");
+            String direccion=teclado.next();
+            System.out.println("ingrese el sueldo bruto");
+            double sueldobruto=teclado.nextDouble();
+            System.out.println("ingrese la categoria");
+            String categoria=teclado.next();
+            System.out.println("Actualizado "+controladorDirectivo.actualizar(directivo.getCedula(), nombre, apellido, direccion, sueldobruto, categoria));
         }
     }
     public void eliminar(){
-        Directivo directivo = buscar();
-        if(directivo != null)
-            System.out.println("Resultado: " + controladorDirectivo.eliminar(directivo.getCedula()));
+        Directivo directivo=buscar();
+        if(directivo!=null)
+            System.out.println("Resultado: "+controladorDirectivo.eliminar(directivo.getCedula()));
     }
     public void listar(){
-        for (Directivo directivo : controladorDirectivo.getListaDirectivo()) 
+        for (Directivo directivo : controladorDirectivo.getListaDirectivo()) {
             System.out.println(directivo);
+        }
     }
 
-    public ControladorDirectivo getControladorDirectivo() {
+    public ControladorPersona getControladorDirectivo() {
         return controladorDirectivo;
     }
 
-    public void setControladorDirectivo(ControladorDirectivo controladorDirectivo) {
+    public void setControladorDirectivo(ControladorPersona controladorDirectivo) {
         this.controladorDirectivo = controladorDirectivo;
     }
     
+            
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author diego
+ * @author jaslyn
  */
 public class Vehiculo {
     private long id;
@@ -18,36 +18,28 @@ public class Vehiculo {
     private String marca;
     private String modelo;
     private Cliente propietario;
-    private List<Servicio> listaServicios;
-    
-    
+    private List<Servicio> Listaservicios;
 
     public Vehiculo(long id, String placa, String marca, String modelo) {
-        this.id = id;
-        this.placa = placa;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.listaServicios = new ArrayList();
+        id=0;
+        placa = "";
+        marca = "";
+        modelo = "";
     }
 
-    public Vehiculo(long id, String placa, String marca, String modelo, Cliente propietario, List<Servicio> listaServicios) {
-        this.id = id;
-        this.placa = placa;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.propietario = propietario;
-        this.listaServicios = listaServicios;
-    }
-
+    
     public Vehiculo(long id, String placa, String marca, String modelo, Cliente propietario) {
         this.id = id;
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.propietario = propietario;
-        this.listaServicios = new ArrayList();
+        this.Listaservicios = new ArrayList();
     }
+
     
+    
+
     public long getId() {
         return id;
     }
@@ -88,17 +80,18 @@ public class Vehiculo {
         this.propietario = propietario;
     }
 
-    public List<Servicio> getListaServicios() {
-        return listaServicios;
+    public List<Servicio> getListaservicios() {
+        return Listaservicios;
     }
 
-    public void setListaServicios(List<Servicio> listaServicios) {
-        this.listaServicios = listaServicios;
+    public void setListaservicios(List<Servicio> Listaservicios) {
+        this.Listaservicios = Listaservicios;
     }
     
+
     @Override
     public String toString() {
-        return "Vehiculo{" + "id=" + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", Propietario = "+ propietario+ '}';
+        return "Vehiculo{" + "id=" + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo +". Propietario= "+propietario+ '}';
     }
     
 }

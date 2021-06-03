@@ -10,57 +10,58 @@ import java.util.List;
 
 /**
  *
- * @author diego
+ * @author jaslyn
  */
 public class Empresa {
     private long id;
     private String nombre;
-    private List<Cliente> listaCliente; // Bidereccional
-    // private Cliente[] listCliente = new Cliente[10];
-
-    public Empresa() {
-        id = 0;
-        nombre = "";
-        listaCliente = new ArrayList();
-    }
+    private List<Cliente> ListaCliente; //bidireccional //si se elimina solo accesible por cliente 
+    //private Cliente[] ListCliente= new Cliente[10];
+    public Empresa(){ //contructor vacio siempre al inicio
+        id=0;
+        nombre="";
+        ListaCliente= new ArrayList();
     
-    public Empresa(long id, String nombre){
+}   //metodo de encapsulamiento, se aisla de la clase padre,
+    //creo 3 constructores.
+
+    public Empresa(long id, String nombre ) { //necesito
         this.id = id;
         this.nombre = nombre;
-        listaCliente = new ArrayList();
+        ListaCliente= new ArrayList();
     }
-
-    public Empresa(long id, String nombre, List<Cliente> listaCliente) {
+    public Empresa(long id, String nombre, List<Cliente> ListaCliente ) { //necesito en una parte
         this.id = id;
         this.nombre = nombre;
-        this.listaCliente = listaCliente;
+        this.ListaCliente=ListaCliente;
     }
     
-    
-    public long getId(){
+    public  long getId(){
         return this.id;
     }
-    public void setId(long id){
-        this.id = id;
+    public void setId(long id){ //void para automaticamente retornar
+        this.id=id;    
     }
     public String getNombre(){
         return this.nombre;
     }
     public void setNombre(String nombre){
-        this.nombre = nombre;
+        this.nombre=nombre;
     }
 
     public List<Cliente> getListaCliente() {
-        return listaCliente;
+        return ListaCliente;
     }
 
-    public void setListaCliente(List<Cliente> listaCliente) {
-        this.listaCliente = listaCliente;
+    public void setListaCliente(List<Cliente> ListaCliente) {
+        this.ListaCliente = ListaCliente;
     }
-    
-     
+
     @Override
     public String toString() {
-        return "id: " + this.id + " nombre: " + this.nombre;
+        return "Empresa{" + "id=" + id + ", nombre=" + nombre +  '}';
     }
+    
+    
+    
 }
